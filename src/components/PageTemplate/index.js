@@ -11,15 +11,15 @@ const Main = styled.main`
 `;
 
 function PageTemplate({ children }) {
-    return (
-        <>
-            <Menu />
-            <Main>
-                {children}
-            </Main>
-            <Footer />
-        </>
-    );
+  return (
+    <>
+      <Menu />
+      <Main>
+        {children}
+      </Main>
+      <Footer />
+    </>
+  );
 }
 
 export default PageTemplate;
