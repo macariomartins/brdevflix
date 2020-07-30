@@ -1,25 +1,81 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PageTemplate from '../../../components/PageTemplate';
+import FormField from '../../../components/FormField';
 
 function CadastroCategoria() {
+    const categoriaTemplate = {
+        cor: '',
+        nome: '',
+        descricao: ''
+    };
+
+    const [categoria, setCategoria] = useState(categoriaTemplate);
+    const [listaCategorias, setListaCategorias] = useState([]);
+
+    function handleAlteracoesFormulario({ target }) {
+        const chave = target.getAttribute('name');
+        const valor = target.value;
+
+        const categoriaAtual = {
+            ...categoria,
+            [chave]: valor
+        }
+
+        setCategoria(categoriaAtual);
+    }
+
+    function handleAdicionaCategoria() {
+        if (categoria.nome) {
+            let categorias = [...listaCategorias, categoria];
+
+            setListaCategorias(categorias);
+            setCategoria(categoriaTemplate);
+        }
+    }
+
     return (
         <PageTemplate>
-            <h1>Cadastro de categoria</h1>
+            <h1>Cadastro de categoria: {categoria.nome}</h1>
 
-            <form>
+            <form onSubmit={(evento) => { evento.preventDefault() }}>
 
-                <label>
-                    Nome da Categoria:
-                    <input
-                        type="text"
-                    />
-                </label>
+                <FormField
+                    name="nome"
+                    label="Nome da categoria"
+                    type="text"
+                    value={categoria.nome}
+                    onChange={handleAlteracoesFormulario}
+                />
 
-                <button>
+                <FormField
+                    name="descricao"
+                    label="Descrição"
+                    type="textarea"
+                    value={categoria.descricao}
+                    onChange={handleAlteracoesFormulario}
+                />
+
+                <FormField
+                    name="cor"
+                    label="Cor: "
+                    type="color"
+                    value={categoria.cor}
+                    onChange={handleAlteracoesFormulario}
+                />
+
+                <button onClick={handleAdicionaCategoria}>
                     Cadastrar
                 </button>
             </form>
+
+            <ul>
+                {
+                    listaCategorias.map((categoriaObjeto, index) => (
+                        <li key={`cat-${index}`}>{categoriaObjeto.nome}</li>
+                    ))
+                }
+            </ul>
 
             <Link to='/'>
                 Ir para a home
