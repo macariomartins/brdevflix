@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PageTemplate from '../../../components/PageTemplate';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
 
 function CadastroCategoria() {
+  const categoriasEndpoint = 'http://localhost:8080/categorias';
   const categoriaTemplate = {
     cor: '',
-    nome: '',
+    titulo: '',
     descricao: '',
   };
 
@@ -27,7 +28,7 @@ function CadastroCategoria() {
   }
 
   function handleAdicionaCategoria() {
-    if (categoria.nome) {
+    if (categoria.titulo) {
       const categorias = [...listaCategorias, categoria];
 
       setListaCategorias(categorias);
@@ -35,21 +36,31 @@ function CadastroCategoria() {
     }
   }
 
+  useEffect(() => {
+    fetch(categoriasEndpoint).then(async (resposta) => {
+      const categorias = await resposta.json();
+
+      setListaCategorias([
+        ...categorias,
+      ]);
+    });
+  }, []);
+
   return (
     <PageTemplate>
       <h1 style={{ marginBottom: '45px' }}>
         Cadastro de categoria:
         {' '}
-        {categoria.nome}
+        {categoria.titulo}
       </h1>
 
       <form onSubmit={(evento) => { evento.preventDefault(); }}>
 
         <FormField
-          name="nome"
+          name="titulo"
           label="Nome da categoria"
           type="text"
-          value={categoria.nome}
+          value={categoria.titulo}
           onChange={handleAlteracoesFormulario}
         />
 
@@ -74,10 +85,18 @@ function CadastroCategoria() {
         </Button>
       </form>
 
+      {
+        listaCategorias.length === 0 && (
+          <div>
+            Carregando...
+          </div>
+        )
+      }
+
       <ul>
         {
           listaCategorias.map((categoriaObjeto) => (
-            <li key={`cat-${categoriaObjeto.nome}`}>{categoriaObjeto.nome}</li>
+            <li key={`cat-${categoriaObjeto.titulo}`}>{categoriaObjeto.titulo}</li>
           ))
         }
       </ul>
