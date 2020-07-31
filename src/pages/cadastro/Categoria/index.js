@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PageTemplate from '../../../components/PageTemplate';
 import FormField from '../../../components/FormField';
+import Button from '../../../components/Button';
 
 function CadastroCategoria() {
   const categoriaTemplate = {
@@ -36,8 +37,9 @@ function CadastroCategoria() {
 
   return (
     <PageTemplate>
-      <h1>
+      <h1 style={{ marginBottom: '45px' }}>
         Cadastro de categoria:
+        {' '}
         {categoria.nome}
       </h1>
 
@@ -61,15 +63,15 @@ function CadastroCategoria() {
 
         <FormField
           name="cor"
-          label="Cor: "
+          label="Cor"
           type="color"
           value={categoria.cor}
           onChange={handleAlteracoesFormulario}
         />
 
-        <button type="submit" onClick={handleAdicionaCategoria}>
+        <Button type="submit" onClick={handleAdicionaCategoria}>
           Cadastrar
-        </button>
+        </Button>
       </form>
 
       <ul>
