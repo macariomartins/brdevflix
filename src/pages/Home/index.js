@@ -58,7 +58,7 @@ function Home() {
             <BannerMain
               videoTitle={featuredVideo.titulo}
               url={featuredVideo.url}
-            // videoDescription={"Desc"}
+              videoDescription={featuredVideo.descricao ? featuredVideo.descricao.length : ''}
             />
           )
         }

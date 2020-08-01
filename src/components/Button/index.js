@@ -10,7 +10,6 @@ const Button = styled.a`
     font-weight: bold;
     font-size: 16px;
     outline: none;
-    border-radius: 5px;
     text-decoration: none;
     display: inline-block;
     transition: opacity .3s;
