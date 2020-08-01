@@ -62,12 +62,6 @@
       "url": "https://www.youtube.com/watch?v=LatCKpcOMak"
     },
     {
-      "id": 4,
-      "categoriaId": 1,
-      "titulo": "Pare de chutar e aprenda a display: inline #01",
-      "url": "https://www.youtube.com/watch?v=5PS6ku8NzIE"
-    },
-    {
       "id": 5,
       "categoriaId": 1,
       "titulo": "Template String: Interpolando strings com JavaScript #AluraMais",
