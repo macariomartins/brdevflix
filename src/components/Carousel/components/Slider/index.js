@@ -2,10 +2,12 @@
 import React from 'react';
 import SlickSlider from 'react-slick';
 import styled from 'styled-components';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import {
+  FaChevronLeft as ChevronLeft,
+  FaChevronRight as ChevronRight,
+} from 'react-icons/fa';
 
 const Container = styled.ul`
-  display: flex;
   padding: 0;
   margin: 0;
   .slick-prev,
@@ -13,39 +15,29 @@ const Container = styled.ul`
     z-index: 50;
     top: 0;
     bottom: 0;
-    margin: auto;
-    width: 30px;
-    height: 30px;
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: content-box;
     transform: initial;
-    &:before {
-      font-size: 42px;
-    }
   }
 
   .slick-prev {
     left: 0;
   }
   .slick-next {
-    right: 0;
+    right: -1px;
   }
 
   .slick-arrow {
-    background: rgba(0,0,0,.7);
-    display: block;
-    height: 100%;
-  }
+    background: rgba(0, 0, 0, .7);
+    height: calc(100% - 4px);
+    color: rgba(255, 255, 255, .5);
+    transition: all ease 300ms;
 
-  /* .slick-next::before, .slick-prev::before {
-    color: rgba(0,0,0,.7);
-    fill: white;
-  } */
-
-  .custom-left-arrow {
-    background: rgba(0,0,0,.8);
-    border: none;
-    cursor: pointer;
-    height: 100%;
-    border-radius: 9px 0 0 9px;
+    &:hover {
+      background: rgba(0, 0, 0, .9);
+      color: var(--primary);
+    }
   }
 `;
 
@@ -59,52 +51,24 @@ export const SliderItem = styled.li`
   }
 `;
 
-// const CustomArrowsContainer = styled.div`
-// `;
-
-// function CustonPrevArrow() {
-//   return (
-//     <CustomArrowsContainer className="custom-left-arrow">
-//       <FaChevronLeft
-//         color="white"
-//         size="32px"
-//       />
-//     </CustomArrowsContainer>
-//   );
-// }
-
-// function CustonNextArrow() {
-//   return (
-//     <CustomArrowsContainer>
-//       <FaChevronRight
-//         color="white"
-//         size="32px"
-//       />
-//     </CustomArrowsContainer>
-//   );
-// }
-
 const Slider = ({ children }) => {
   const slickSettings = {
     dots: false,
-    // arrows: false,
     infinite: true,
     speed: 300,
     centerMode: false,
     variableWidth: true,
     adaptiveHeight: true,
     swipeToSlide: true,
-    // prevArrow: <FaArrowLeft values={{ color: 'white' }} />,
-    // nextArrow: <CustomNextArrow />,
+    prevArrow: <ChevronLeft />,
+    nextArrow: <ChevronRight />,
   };
 
   return (
     <Container>
-      {/* <CustonPrevArrow /> */}
       <SlickSlider {...slickSettings}>
         {children}
       </SlickSlider>
-      {/* <CustonNextArrow /> */}
     </Container>
   );
 };

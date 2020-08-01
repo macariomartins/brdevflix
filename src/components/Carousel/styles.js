@@ -1,22 +1,41 @@
+import React from 'react';
 import styled from 'styled-components';
+
+export const LabelColor = styled.div`
+    width: 16px;
+    height: 100%;
+    margin-right: 10px;
+    background: ${props => props.categoryColor ? props.categoryColor : 'var(--primary)'};
+`;
 
 export const Title = styled.h3`
   font-style: normal;
-  font-weight: normal;
-  font-size: 35px;
+  font-weight: bolder;
+  font-size: 24px;
   line-height: 1;
   margin-bottom: 16px;
   display: inline-block;
-  padding: 20px;
-  background: red;
+  color: white;
   line-height: 1;
-  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  height: 80px;
 
   @media (max-width: 800px) {
     font-size: 18px;
-    padding: 10px;
   }
 `;
+
+export function TitleWrapper({ categoryColor, children }) {
+  return (
+    <Title>
+      <LabelColor
+        categoryColor={categoryColor}
+      />
+      {children}
+    </Title>
+  );
+}
 
 export const ExtraLink = styled.a`
   margin-left: 16px;
