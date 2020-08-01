@@ -40,12 +40,6 @@
         "text": "Formação de Jogos na Alura",
         "url": "https://www.alura.com.br/cursos-online-front-end"
       }
-    },
-    {
-      "cor": "#d86ae7",
-      "titulo": "Psicanálise",
-      "descricao": "Categoria para Sabrina",
-      "id": 6
     }
   ],
   "videos": [
@@ -186,20 +180,6 @@
       "categoriaId": 5,
       "titulo": "Resident Evil 8",
       "url": "https://www.youtube.com/watch?v=JSapXD9vxYA"
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=FPCh_y_IkoU",
-      "titulo": "Casa do Saber: CLARICE LISPECTOR",
-      "descricao": "",
-      "categoriaId": 6,
-      "id": 25
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=7T8apUobqUk",
-      "titulo": "Casa do Saber: QUAL O LIMITE ENTRE DESEJO E ASSÉDIO?",
-      "descricao": "Reveja aqui o vídeo de Maria Homem para o Canal da Casa do Saber! Qual o limiar entre Desejo e Assédio?",
-      "categoriaId": 6,
-      "id": 26
     }
   ]
 }
