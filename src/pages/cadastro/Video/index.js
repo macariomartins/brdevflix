@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import ButtonLink from '../../../components/ButtonLink';
 import PageTemplate from '../../../components/PageTemplate';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
@@ -55,10 +54,6 @@ function CadastroVideo() {
       <h1 style={{ marginBottom: '45px' }}>
         Cadastro de vídeo
       </h1>
-
-      <ButtonLink to="/cadastro/categoria">
-        Cadastrar nova categoria
-      </ButtonLink>
 
       <form onSubmit={(evento) => { evento.preventDefault(); }}>
 
@@ -116,10 +111,8 @@ function CadastroVideo() {
         </Button>
       </form>
 
-
-
-      <Link to="/">
-        Ir para a home
+      <Link className="GoHome" to="/">
+        Voltar para a Home
       </Link>
     </PageTemplate>
   );

@@ -31,3 +31,8 @@ a {
   display: flex;
   flex-direction: column;
 }
+
+.GoHome {
+  float: right;
+  margin-top: -22px;
+}

@@ -85,24 +85,8 @@ function CadastroCategoria() {
         </Button>
       </form>
 
-      {
-        listaCategorias.length === 0 && (
-          <div>
-            Carregando...
-          </div>
-        )
-      }
-
-      <ul>
-        {
-          listaCategorias.map((categoriaObjeto) => (
-            <li key={`cat-${categoriaObjeto.titulo}`}>{categoriaObjeto.titulo}</li>
-          ))
-        }
-      </ul>
-
-      <Link to="/">
-        Ir para a home
+      <Link className="GoHome" to="/">
+        Voltar para a Home
       </Link>
     </PageTemplate>
   );
