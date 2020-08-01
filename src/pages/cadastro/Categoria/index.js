@@ -5,7 +5,7 @@ import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
 
 function CadastroCategoria() {
-  const categoriasEndpoint = 'http://localhost:8080/categorias';
+  const API_URL = window.location.hostname.includes('localhost') ? 'http://localhost:8080/categorias' : 'https://brdevflix.herokuapp.com/categorias';
   const categoriaTemplate = {
     cor: '',
     titulo: '',
@@ -37,7 +37,7 @@ function CadastroCategoria() {
   }
 
   useEffect(() => {
-    fetch(categoriasEndpoint).then(async (resposta) => {
+    fetch(API_URL).then(async (resposta) => {
       const categorias = await resposta.json();
 
       setListaCategorias([
