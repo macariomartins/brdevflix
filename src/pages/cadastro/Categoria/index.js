@@ -1,13 +1,14 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PageTemplate from '../../../components/PageTemplate';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
+import categoriasRepository from '../../../repositories/categorias';
 
 function CadastroCategoria() {
-  const API_URL = window.location.hostname.includes('localhost') ? 'http://localhost:8080/categorias' : 'https://brdevflix.herokuapp.com/categorias';
   const categoriaTemplate = {
-    cor: '',
+    cor: '#E50914',
     titulo: '',
     descricao: '',
   };
@@ -29,21 +30,20 @@ function CadastroCategoria() {
 
   function handleAdicionaCategoria() {
     if (categoria.titulo) {
-      const categorias = [...listaCategorias, categoria];
-
-      setListaCategorias(categorias);
+      categoriasRepository.addNew(categoria);
       setCategoria(categoriaTemplate);
     }
   }
 
   useEffect(() => {
-    fetch(API_URL).then(async (resposta) => {
-      const categorias = await resposta.json();
-
-      setListaCategorias([
-        ...categorias,
-      ]);
-    });
+    categoriasRepository
+      .getAll()
+      .then((categorias) => {
+        setListaCategorias(categorias);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }, []);
 
   return (

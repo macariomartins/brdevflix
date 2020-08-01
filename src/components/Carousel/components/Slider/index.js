@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import SlickSlider from 'react-slick';
@@ -19,6 +20,10 @@ const Container = styled.ul`
     padding: 0 15px;
     box-sizing: content-box;
     transform: initial;
+
+    &:before {
+      display: none;
+    }
   }
 
   .slick-prev {
@@ -30,9 +35,9 @@ const Container = styled.ul`
 
   .slick-arrow {
     background: rgba(0, 0, 0, .7);
+    transition: all ease 300ms;
     height: calc(100% - 4px);
     color: rgba(255, 255, 255, .5);
-    transition: all ease 300ms;
 
     &:hover {
       background: rgba(0, 0, 0, .9);
@@ -40,6 +45,14 @@ const Container = styled.ul`
     }
   }
 `;
+
+const ArrowWraper = ({
+  currentSlide, slideCount, children, ...props
+}) => (
+    <span {...props} style={{ display: 'flex', alignItems: 'center' }}>
+      {children}
+    </span>
+  );
 
 export const SliderItem = styled.li`
   margin-right: 16px;
@@ -60,8 +73,16 @@ const Slider = ({ children }) => {
     variableWidth: true,
     adaptiveHeight: true,
     swipeToSlide: true,
-    prevArrow: <ChevronLeft />,
-    nextArrow: <ChevronRight />,
+    prevArrow: (
+      <ArrowWraper>
+        <ChevronLeft size={32} />
+      </ArrowWraper>
+    ),
+    nextArrow: (
+      <ArrowWraper>
+        <ChevronRight size={32} />
+      </ArrowWraper>
+    ),
   };
 
   return (

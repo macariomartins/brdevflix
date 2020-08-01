@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import BannerMain from '../../components/BannerMain';
 import Carousel from '../../components/Carousel';
@@ -20,7 +21,9 @@ function Home() {
   useEffect(() => {
     categoriasRepository
       .getAllWithVideos()
-      .then((categorias) => {
+      .then((todasAsCategorias) => {
+        const categorias = todasAsCategorias.filter((categoria) => categoria.videos.length > 0);
+
         setDadosIniciais({ categorias });
       })
       .catch((err) => {
@@ -61,7 +64,7 @@ function Home() {
         }
         {
           dadosIniciais.categorias.length > 0 && dadosIniciais.categorias
-            .map(categoria => (
+            .map((categoria) => (
               <Carousel key={`cat-${categoria.id}`} category={categoria} />
             ))
         }
